@@ -97,8 +97,7 @@ body {
 
 main {
   flex: 1;
-  width: 100%;
-  max-width: var(--content-width);
+  width: min(var(--content-width), calc(100% - 64px));
   margin: 0 auto;
   padding: 48px 0 40px;
 }
@@ -259,6 +258,144 @@ main {
 .tag--color { background-color: var(--blue-shade); }
 .tag--text { background-color: var(--amber-shade); }
 .tag--writing { background-color: var(--rose-shade); }
+
+/* ========== Applied type (색상 변환 결과) ========== */
+.applied-type {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+.applied-type__label {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2b3240;
+}
+
+.applied-type__value {
+  padding: 6px 22px;
+  border: 1.5px solid var(--color-line);
+  border-radius: 999px;
+  background-color: #efede6;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: #2b3240;
+}
+
+.applied-type__note {
+  font-size: var(--fs-caption);
+  color: var(--color-muted);
+}
+
+/* ========== Icons ========== */
+.icon {
+  width: 1.05em;
+  height: 1.05em;
+  flex-shrink: 0;
+}
+
+.btn--sm {
+  min-height: 44px;
+  padding: 0 14px;
+  gap: 6px;
+  font-size: 22px;
+}
+
+/* ========== Form controls ========== */
+.select {
+  appearance: none;
+  height: 72px;
+  padding: 0 60px 0 24px;
+  border: 2px solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%234a5160' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 20px center / 24px;
+  font-size: 28px;
+}
+
+.select--sm {
+  height: 52px;
+  padding: 0 48px 0 18px;
+  background-position: right 14px center;
+  font-size: 24px;
+}
+
+.range-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: #2b3240;
+}
+
+.range {
+  appearance: none;
+  width: 150px;
+  height: 6px;
+  border-radius: 3px;
+  background-color: var(--color-line);
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #2b3240;
+}
+
+.range::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #2b3240;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: #2b3240;
+  cursor: pointer;
+}
+
+.switch input {
+  appearance: none;
+  position: relative;
+  width: 60px;
+  height: 34px;
+  margin: 0;
+  border-radius: 17px;
+  background-color: var(--color-line);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.switch input::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.2s;
+}
+
+.switch input:checked {
+  background-color: var(--color-primary);
+}
+
+.switch input:checked::before {
+  transform: translateX(26px);
+}
 
 /* ========== Utility ========== */
 .sr-only {
