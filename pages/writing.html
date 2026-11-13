@@ -31,10 +31,71 @@
 
     <div class="writing-layout">
       <section class="card editor" aria-label="글쓰기">
-        <!-- 자간/행간, 검사하기, 편집 영역, 범례 -->
+        <div class="editor__toolbar">
+          <label class="range-field">자간 <input class="range" type="range" min="0" max="10" value="6"></label>
+          <label class="range-field">행간 <input class="range" type="range" min="0" max="10" value="5"></label>
+          <button class="btn btn--primary editor__check" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M8 12.3l3 3 5-5.6"/></svg>검사하기</button>
+        </div>
+
+        <!-- [html-validate-disable-next prefer-native-element -- 틀린 부분을 강조해야 해서 textarea 대신 contenteditable 사용] -->
+        <div class="editor__area" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="글 입력">
+          <p>오늘 수업에서 <mark class="err err--space">웹접근성<sup>1</sup></mark>에 대해 배웠다.</p>
+          <p>글자 사이 간격을 넓히니 <mark class="err err--spell">휠씬<sup>2</sup></mark> 읽기 쉬웠다.</p>
+          <p>다음 시간에는 직접 <mark class="err err--spell">만들어볼께<sup>3</sup></mark>.</p>
+        </div>
+
+        <div class="editor__footer">
+          <ul class="legend">
+            <li class="legend__item legend__item--space">띄어쓰기</li>
+            <li class="legend__item legend__item--spell">맞춤법</li>
+          </ul>
+          <span class="editor__count">62자 · 교정 제안 3개</span>
+        </div>
       </section>
-      <section class="card suggestions" aria-label="교정 제안">
-        <!-- 교정 제안 목록 -->
+
+      <section class="card suggestions" aria-labelledby="sugg-title">
+        <div class="suggestions__head">
+          <h2 class="suggestions__title" id="sugg-title">교정 제안 3</h2>
+          <button class="btn btn--outline-blue btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 13l4 4 8-9M10 16l1 1 9-10"/></svg>모두 적용</button>
+        </div>
+        <ol class="suggestions__list">
+        <li class="suggestion">
+          <div class="suggestion__head">
+            <span class="suggestion__num">1</span>
+            <span class="tag tag--space">띄어쓰기</span>
+            <div class="suggestion__actions">
+              <button class="btn btn--primary btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>적용</button>
+              <button class="btn btn--outline btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>무시</button>
+            </div>
+          </div>
+          <p class="suggestion__change"><del>웹접근성</del> → <ins>웹 접근성</ins></p>
+          <p class="suggestion__why">두 단어는 띄어 써요.</p>
+        </li>
+        <li class="suggestion">
+          <div class="suggestion__head">
+            <span class="suggestion__num">2</span>
+            <span class="tag tag--spell">맞춤법</span>
+            <div class="suggestion__actions">
+              <button class="btn btn--primary btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>적용</button>
+              <button class="btn btn--outline btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>무시</button>
+            </div>
+          </div>
+          <p class="suggestion__change"><del>휠씬</del> → <ins>훨씬</ins></p>
+          <p class="suggestion__why">자주 헷갈리는 모음이에요.</p>
+        </li>
+        <li class="suggestion">
+          <div class="suggestion__head">
+            <span class="suggestion__num">3</span>
+            <span class="tag tag--spell">맞춤법</span>
+            <div class="suggestion__actions">
+              <button class="btn btn--primary btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>적용</button>
+              <button class="btn btn--outline btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>무시</button>
+            </div>
+          </div>
+          <p class="suggestion__change"><del>만들어볼께</del> → <ins>만들어 볼게</ins></p>
+          <p class="suggestion__why">[께]로 소리 나도 ‘게’로 써요.</p>
+        </li>
+        </ol>
       </section>
     </div>
   </main>
