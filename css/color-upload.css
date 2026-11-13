@@ -6,53 +6,15 @@
   margin-top: 36px;
 }
 
+.upload-card .dropzone {
+  min-height: 390px;
+}
+
 .upload-card {
   display: flex;
   flex-direction: column;
   gap: 22px;
   padding: 32px;
-}
-
-.dropzone {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  min-height: 390px;
-  border: 2.5px dashed #b9b6ae;
-  border-radius: 16px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s, background-color 0.2s;
-}
-
-.dropzone:hover,
-.dropzone:focus-within {
-  border-color: var(--color-primary);
-  background-color: var(--color-primary-soft);
-}
-
-.dropzone__icon {
-  width: 72px;
-  height: 72px;
-  color: var(--color-muted);
-}
-
-.dropzone__title {
-  font-size: var(--fs-body);
-  color: #2b3240;
-}
-
-.dropzone__hint {
-  margin-bottom: 12px;
-  font-size: var(--fs-caption);
-  color: var(--color-muted);
-}
-
-.dropzone .btn {
-  min-height: 60px;
-  font-size: var(--fs-small);
 }
 
 .selected-file {
