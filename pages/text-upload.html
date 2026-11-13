@@ -29,9 +29,31 @@
       <p class="page-desc">읽을 텍스트를 직접 입력하거나 파일·링크로 불러오세요.</p>
     </section>
 
-    <section class="card input-card" aria-label="텍스트 입력">
-      <!-- 입력 방식 탭(직접 입력 / 파일 업로드 / 링크 입력), 입력창, 언어 선택, 변환하기 -->
-    </section>
+    <form class="card input-card" action="text-result.html">
+      <div class="tabs" role="tablist" aria-label="입력 방식">
+        <button class="tabs__tab" type="button" role="tab" aria-selected="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M7 14h10"/></svg>직접 입력</button>
+        <button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>파일 업로드</button>
+        <button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 1 0-5.7l2.3-2.3a4 4 0 0 1 5.7 5.7l-1.2 1.2M14 10a4 4 0 0 1 0 5.7l-2.3 2.3a4 4 0 0 1-5.7-5.7l1.2-1.2"/></svg>링크 입력</button>
+      </div>
+
+      <div class="textarea-wrap">
+        <label class="sr-only" for="source-text">변환할 텍스트</label>
+        <textarea id="source-text" name="text" maxlength="1000" placeholder="텍스트를 붙여넣거나 입력하세요"></textarea>
+        <span class="textarea-count">0 / 1,000자</span>
+      </div>
+
+      <div class="input-card__footer">
+        <label class="language">
+          <span class="language__label">언어</span>
+          <select class="select" name="lang">
+            <option value="auto">자동 감지</option>
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+        <button class="btn btn--primary btn--lg" type="submit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>변환하기</button>
+      </div>
+    </form>
   </main>
 
   <footer class="site-footer"></footer>
