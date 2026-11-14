@@ -1,1 +1,130 @@
 /* 텍스트 변환 결과 */
+.style-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px 44px;
+  margin-top: 32px;
+  padding: 22px 32px;
+}
+
+.reading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 28px;
+}
+
+.sentence {
+  padding: 8px 20px;
+  font-size: var(--fs-body);
+  letter-spacing: 1.5px;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+.sentence--far {
+  font-size: 28px;
+  letter-spacing: 1px;
+  color: #a4a9b1;
+}
+
+.sentence--current {
+  margin: 8px 0;
+  padding: 26px 28px;
+  border-left: 8px solid var(--color-primary);
+  border-radius: 14px;
+  background-color: var(--color-primary-soft);
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--color-ink);
+}
+
+.confusable {
+  font-weight: 800;
+  color: var(--rose-shade);
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.player-controls__main {
+  display: flex;
+  gap: 20px;
+  margin: 0 auto;
+  padding-right: 200px;
+}
+
+.btn--xl {
+  min-width: 320px;
+  min-height: 92px;
+  font-size: var(--fs-body);
+}
+
+.arrow-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-shrink: 0;
+  width: 300px;
+  height: 92px;
+  border: 0;
+  white-space: nowrap;
+  background: none;
+  font-size: var(--fs-body);
+  font-weight: 800;
+  color: var(--color-primary);
+  isolation: isolate;
+}
+
+.arrow-btn--left {
+  padding-left: 44px;
+}
+
+.arrow-btn--right {
+  padding-right: 44px;
+}
+
+.arrow-btn__shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--color-surface);
+  stroke: var(--color-primary);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  z-index: -1;
+  transition: fill 0.2s;
+}
+
+.arrow-btn:hover .arrow-btn__shape {
+  fill: var(--color-primary-soft);
+}
+
+.arrow-btn > .keycap {
+  position: relative;
+}
+
+.keycap {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--color-primary);
+  border-bottom-width: 5px;
+  border-radius: 10px;
+  background-color: var(--color-primary-soft);
+}
+
+.keycap .icon {
+  width: 28px;
+  height: 28px;
+}

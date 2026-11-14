@@ -26,16 +26,39 @@
         </span>
         <h1 class="page-title">동영상 변환 결과</h1>
         <div class="page-actions">
-          <a class="btn btn--gray" href="color-upload.html">다른 파일 올리기</a>
-          <button class="btn btn--primary" type="button">다운로드</button>
+          <a class="btn btn--gray" href="color-upload.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V9M7 13l5-5 5 5M5 4h14"/></svg>다른 파일 올리기</a>
+          <button class="btn btn--primary" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>다운로드</button>
         </div>
       </div>
     </section>
 
-    <p class="applied-type">적용된 유형 <span class="applied-type__value">적색 계열 (Protan)</span></p>
-    <div class="player">
-      <!-- 동영상 플레이어, 원본/변환 전환, 재생 바 -->
-    </div>
+    <p class="applied-type">
+      <span class="applied-type__label">적용된 유형</span>
+      <span class="applied-type__value">적색 계열 (Protan)</span>
+      <span class="applied-type__note">유형 변경은 업로드 화면에서 할 수 있어요.</span>
+    </p>
+
+    <section class="player" aria-label="동영상 플레이어">
+      <div class="player__screen">
+        <span class="player__badge">변환 결과 보는 중</span>
+        <div class="player__toggle" role="group" aria-label="보기 전환">
+          <button type="button" aria-pressed="false">원본</button>
+          <button type="button" aria-pressed="true">변환</button>
+        </div>
+        <button class="player__big-play" type="button" aria-label="재생">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z" fill="currentColor"/></svg>
+        </button>
+      </div>
+
+      <div class="card player__controls">
+        <button class="player__play" type="button" aria-label="재생">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z" fill="currentColor"/></svg>
+        </button>
+        <span class="player__time">00:12 / 01:30</span>
+        <input class="range player__progress" type="range" min="0" max="90" value="12" aria-label="재생 위치">
+        <button class="player__fullscreen" type="button">전체 화면</button>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer"></footer>

@@ -1,1 +1,193 @@
 /* 글쓰기 가이드 */
+.writing-layout {
+  display: grid;
+  grid-template-columns: 930fr 450fr;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  padding: 0 32px 28px;
+}
+
+.editor__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 22px 0;
+  border-bottom: 1.5px solid var(--color-card-line);
+}
+
+.editor__toolbar .range-field {
+  font-size: var(--fs-caption);
+}
+
+.editor__check {
+  margin-left: auto;
+  min-height: 60px;
+  font-size: var(--fs-small);
+}
+
+.editor__area {
+  flex: 1;
+  min-height: 360px;
+  padding: 36px 16px;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  line-height: 2.1;
+}
+
+.editor__area:focus {
+  outline: none;
+}
+
+.err {
+  background: none;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.err sup {
+  margin-left: 2px;
+  font-size: 20px;
+}
+
+.err--space {
+  color: var(--blue-shade);
+}
+
+.err--spell {
+  color: var(--rose-shade);
+}
+
+.editor__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legend {
+  display: flex;
+  gap: 28px;
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  color: #2b3240;
+}
+
+.legend__item::before {
+  content: "";
+  width: 22px;
+  height: 22px;
+}
+
+.legend__item--space::before {
+  border-radius: 4px;
+  background-color: var(--blue-shade);
+}
+
+.legend__item--spell::before {
+  border-radius: 50%;
+  background-color: var(--rose-shade);
+}
+
+.editor__count {
+  font-size: var(--fs-caption);
+  color: var(--color-muted);
+}
+
+.suggestions {
+  padding: 28px 24px;
+}
+
+.suggestions__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.suggestions__title {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.suggestions__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.suggestion {
+  padding: 16px 20px 18px;
+  border-radius: 14px;
+  background-color: var(--color-bg);
+}
+
+.suggestion__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.suggestion__num {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #2b3240;
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.suggestion__head .tag {
+  font-size: 22px;
+}
+
+.tag--space {
+  border: 1.5px solid var(--blue-shade);
+  background-color: var(--blue-tint);
+  color: var(--blue-shade);
+}
+
+.tag--spell {
+  background-color: var(--rose-shade);
+}
+
+.suggestion__actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.suggestion__change {
+  margin-top: 14px;
+  font-size: 28px;
+}
+
+.suggestion__change del {
+  color: var(--color-muted);
+}
+
+.suggestion__change ins {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.suggestion__why {
+  margin-top: 4px;
+  font-size: 23px;
+  color: var(--color-body);
+}

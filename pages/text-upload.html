@@ -29,11 +29,60 @@
       <p class="page-desc">읽을 텍스트를 직접 입력하거나 파일·링크로 불러오세요.</p>
     </section>
 
-    <section class="card input-card" aria-label="텍스트 입력">
-      <!-- 입력 방식 탭(직접 입력 / 파일 업로드 / 링크 입력), 입력창, 언어 선택, 변환하기 -->
-    </section>
+    <form class="card input-card" action="text-result.html">
+      <div class="tabs" role="tablist" aria-label="입력 방식">
+        <button class="tabs__tab" id="tab-type" type="button" role="tab" aria-selected="true" aria-controls="panel-type"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18v12H3zM7 10h.01M11 10h.01M15 10h.01M7 14h10"/></svg>직접 입력</button>
+        <button class="tabs__tab" id="tab-file" type="button" role="tab" aria-selected="false" aria-controls="panel-file" tabindex="-1"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>파일 업로드</button>
+        <button class="tabs__tab" id="tab-link" type="button" role="tab" aria-selected="false" aria-controls="panel-link" tabindex="-1"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 1 0-5.7l2.3-2.3a4 4 0 0 1 5.7 5.7l-1.2 1.2M14 10a4 4 0 0 1 0 5.7l-2.3 2.3a4 4 0 0 1-5.7-5.7l1.2-1.2"/></svg>링크 입력</button>
+      </div>
+
+      <div class="tab-panel" id="panel-type" role="tabpanel" aria-labelledby="tab-type">
+        <div class="textarea-wrap">
+          <label class="sr-only" for="source-text">변환할 텍스트</label>
+          <textarea id="source-text" name="text" maxlength="1000" placeholder="텍스트를 붙여넣거나 입력하세요"></textarea>
+          <span class="textarea-count">0 / 1,000자</span>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-file" role="tabpanel" aria-labelledby="tab-file" hidden>
+        <label class="dropzone">
+          <input class="sr-only" type="file" name="textFile" accept=".txt,.pdf,.docx">
+          <svg class="dropzone__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V9M7 13l5-5 5 5M5 4h14"/></svg>
+          <span class="dropzone__title">텍스트 파일을 끌어다 놓거나 클릭하세요</span>
+          <span class="dropzone__hint">TXT · PDF · DOCX · 최대 1,000자까지 변환</span>
+          <span class="btn btn--outline-blue"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7zM14 3v5h5"/></svg>파일 선택</span>
+        </label>
+      </div>
+
+      <div class="tab-panel" id="panel-link" role="tabpanel" aria-labelledby="tab-link" hidden>
+        <div class="link-input">
+          <label class="link-input__label" for="source-url">웹페이지 주소</label>
+          <div class="link-input__row">
+            <span class="link-input__field">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 1 0-5.7l2.3-2.3a4 4 0 0 1 5.7 5.7l-1.2 1.2M14 10a4 4 0 0 1 0 5.7l-2.3 2.3a4 4 0 0 1-5.7-5.7l1.2-1.2"/></svg>
+              <input id="source-url" type="url" name="url" placeholder="https://" inputmode="url">
+            </span>
+            <button class="btn btn--outline-blue link-input__fetch" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>불러오기</button>
+          </div>
+          <p class="link-input__hint">기사나 블로그 주소를 넣으면 본문 글자만 가져와요. 불러온 글은 1,000자까지 변환돼요.</p>
+        </div>
+      </div>
+
+      <div class="input-card__footer">
+        <label class="language">
+          <span class="language__label">언어</span>
+          <select class="select" name="lang">
+            <option value="auto">자동 감지</option>
+            <option value="ko">한국어</option>
+            <option value="en">English</option>
+          </select>
+        </label>
+        <button class="btn btn--primary btn--lg" type="submit"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>변환하기</button>
+      </div>
+    </form>
   </main>
 
   <footer class="site-footer"></footer>
+  <script src="../js/tabs.js"></script>
 </body>
 </html>

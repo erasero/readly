@@ -1,1 +1,117 @@
 /* 동영상 변환 결과 */
+.player {
+  margin-top: 36px;
+}
+
+.player__screen {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 440px;
+  border-radius: 20px;
+  background-color: #2b3240;
+  overflow: hidden;
+}
+
+.player__screen video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.player__badge {
+  position: absolute;
+  top: 26px;
+  left: 28px;
+  padding: 8px 22px;
+  border-radius: 999px;
+  background-color: #ffffff;
+  font-size: var(--fs-caption);
+  font-weight: 700;
+}
+
+.player__toggle {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  display: flex;
+  padding: 6px;
+  border-radius: 999px;
+  background-color: #ffffff;
+}
+
+.player__toggle button {
+  min-width: 108px;
+  padding: 6px 20px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-size: var(--fs-caption);
+  color: #2b3240;
+}
+
+.player__toggle button[aria-pressed="true"] {
+  background-color: var(--color-primary);
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.player__big-play {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border: 0;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: var(--color-primary);
+}
+
+.player__big-play svg {
+  width: 52px;
+  height: 52px;
+  margin-left: 6px;
+}
+
+.player__controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 18px;
+  padding: 16px 32px;
+}
+
+.player__play {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.player__play svg {
+  width: 24px;
+  height: 24px;
+  margin-left: 3px;
+}
+
+.player__time {
+  font-size: var(--fs-caption);
+  font-variant-numeric: tabular-nums;
+  color: #2b3240;
+}
+
+.player__progress {
+  flex: 1;
+  width: auto;
+}
+
+.player__fullscreen {
+  border: 0;
+  background: none;
+  font-size: var(--fs-caption);
+  color: var(--color-body);
+}

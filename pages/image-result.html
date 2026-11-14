@@ -26,15 +26,31 @@
         </span>
         <h1 class="page-title">이미지 변환 결과</h1>
         <div class="page-actions">
-          <a class="btn btn--gray" href="color-upload.html">다른 파일 올리기</a>
-          <button class="btn btn--primary" type="button">다운로드</button>
+          <a class="btn btn--gray" href="color-upload.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V9M7 13l5-5 5 5M5 4h14"/></svg>다른 파일 올리기</a>
+          <button class="btn btn--primary" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>다운로드</button>
         </div>
       </div>
     </section>
 
-    <p class="applied-type">적용된 유형 <span class="applied-type__value">적색 계열 (Protan)</span></p>
+    <p class="applied-type">
+      <span class="applied-type__label">적용된 유형</span>
+      <span class="applied-type__value">적색 계열 (Protan)</span>
+      <span class="applied-type__note">유형 변경은 업로드 화면에서 할 수 있어요.</span>
+    </p>
+
     <div class="compare">
-      <!-- 원본 / 변환 결과 -->
+      <figure class="compare__item">
+        <figcaption class="compare__label">원본</figcaption>
+        <div class="card compare__frame">
+          <div class="preview"><svg class="preview__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM8.5 7.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 1 0 0-3M4.5 18l5-5 4 4 3-3 4 4"/></svg><span>원본 이미지</span></div>
+        </div>
+      </figure>
+      <figure class="compare__item">
+        <figcaption class="compare__label">변환 결과</figcaption>
+        <div class="card compare__frame">
+          <div class="preview"><svg class="preview__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4zM8.5 7.5a1.5 1.5 0 1 0 0 3a1.5 1.5 0 1 0 0-3M4.5 18l5-5 4 4 3-3 4 4"/></svg><span>변환된 이미지</span></div>
+        </div>
+      </figure>
     </div>
   </main>
 

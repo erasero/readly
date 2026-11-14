@@ -26,20 +26,45 @@
         </span>
         <h1 class="page-title">텍스트 변환 결과</h1>
         <div class="page-actions">
-          <a class="btn btn--gray" href="text-upload.html">텍스트 추가</a>
-          <button class="btn btn--gray" type="button">PDF 다운로드</button>
+          <a class="btn btn--gray" href="text-upload.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>텍스트 추가</a>
+          <button class="btn btn--gray" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>PDF 다운로드</button>
         </div>
       </div>
     </section>
 
     <section class="card style-bar" aria-label="보기 설정">
-      <!-- 글꼴, 자간, 행간, 헷갈리는 글자 강조, 읽기 가이드 -->
+      <label class="range-field">글꼴
+        <select class="select select--sm">
+          <option>기본 글꼴</option>
+        </select>
+      </label>
+      <label class="range-field">자간 <input class="range" type="range" min="0" max="10" value="6"></label>
+      <label class="range-field">행간 <input class="range" type="range" min="0" max="10" value="5"></label>
+      <label class="switch"><input type="checkbox" checked> 헷갈리는 글자 강조</label>
+      <label class="switch"><input type="checkbox" checked> 읽기 가이드</label>
     </section>
+
     <section class="card reading" aria-label="변환된 텍스트">
-      <!-- 문장 목록 -->
+      <p class="sentence sentence--far">그 이전 문장입니다. 지나간 문장은 흐리게 표시돼요.</p>
+      <p class="sentence sentence--near">이전 문장입니다. 이미 읽은 문장은 평문으로 표시돼요.</p>
+      <p class="sentence sentence--current" aria-current="true">현재 문장입니다. 지금 읽는 문장이 크게 강조돼요.</p>
+      <p class="sentence sentence--near">다음 문장: A <span class="confusable">b</span>ig <span class="confusable">d</span>og <span class="confusable">p</span>laye<span class="confusable">d</span> <span class="confusable">b</span>y the <span class="confusable">d</span>ee<span class="confusable">p</span> <span class="confusable">p</span>on<span class="confusable">d</span>.</p>
+      <p class="sentence sentence--far">그 다음 문장입니다.</p>
     </section>
+
     <div class="player-controls">
-      <!-- 속도, 앞 문장, 소리로 듣기, 뒤 문장 -->
+      <label class="range-field">속도 <input class="range" type="range" min="5" max="20" value="10"></label>
+      <div class="player-controls__main">
+        <button class="arrow-btn arrow-btn--left" type="button" aria-keyshortcuts="ArrowLeft">
+          <svg class="arrow-btn__shape" viewBox="0 0 300 92" aria-hidden="true"><path d="M1.5 46 L44 1.5 H298.5 V90.5 H44 Z"/></svg>
+          <span class="keycap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></span>앞 문장
+        </button>
+        <button class="btn btn--primary btn--xl" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/></svg>소리로 듣기</button>
+        <button class="arrow-btn arrow-btn--right" type="button" aria-keyshortcuts="ArrowRight">
+          <svg class="arrow-btn__shape" viewBox="0 0 300 92" aria-hidden="true"><path d="M298.5 46 L256 1.5 H1.5 V90.5 H256 Z"/></svg>
+          <span class="keycap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>뒤 문장
+        </button>
+      </div>
     </div>
   </main>
 
