@@ -18,7 +18,7 @@ function formatFileSize(bytes){
 export function colorUploader({onSubmit}){
     const form = document.querySelector('.upload-layout');
     const dropzone = form.querySelector('.dropzone');
-    const fileInput = form.querySelector('input[name="media]');
+    const fileInput = form.querySelector('input[name="media"]');
 
     const selectedBox = form.querySelector('.selected-file');
     const selectedIcon = form.querySelector('.selected-file__icon');
