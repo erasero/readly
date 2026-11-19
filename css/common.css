@@ -82,6 +82,10 @@ a {
   text-decoration: none;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 /* ========== Base ========== */
 body {
   min-height: 100vh;
