@@ -37,6 +37,18 @@
           <button class="btn btn--primary editor__check" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M8 12.3l3 3 5-5.6"/></svg>검사하기</button>
         </div>
 
+        <div class="sentence-input">
+          <div class="sentence-input__head">
+            <label class="sentence-input__label" for="sentence">문장 4</label>
+            <button class="btn btn--outline-blue btn--md" type="button" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>음성 입력</button>
+          </div>
+          <div class="sentence-input__box">
+            <textarea id="sentence" name="sentence" rows="2" maxlength="200" placeholder="문장을 입력하세요"></textarea>
+            <span class="sentence-input__count">0 / 200자</span>
+          </div>
+          <p class="sentence-input__hint"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v5.5M12 7.8h.01"/></svg>Enter를 누르면 문장이 작성 결과에 추가돼요.</p>
+        </div>
+
         <!-- [html-validate-disable-next prefer-native-element -- 틀린 부분을 강조해야 해서 textarea 대신 contenteditable 사용] -->
         <div class="editor__area" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="글 입력">
           <p>오늘 수업에서 <mark class="err err--space">웹접근성<sup>1</sup></mark>에 대해 배웠다.</p>

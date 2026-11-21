@@ -2,6 +2,7 @@
 .writing-layout {
   display: grid;
   grid-template-columns: 930fr 450fr;
+  align-items: start;
   gap: 28px;
   margin-top: 36px;
 }
@@ -30,10 +31,90 @@
   font-size: var(--fs-small);
 }
 
+.btn--md {
+  min-height: 56px;
+  padding: 0 22px;
+  font-size: var(--fs-caption);
+}
+
+.sentence-input {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 28px;
+}
+
+.sentence-input__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sentence-input__label {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2b3240;
+}
+
+.sentence-input__box {
+  position: relative;
+  border: 2px solid var(--color-line);
+  border-radius: 14px;
+  transition: border-color 0.2s;
+}
+
+.sentence-input__box:focus-within {
+  border-color: var(--color-primary);
+}
+
+.sentence-input__box textarea {
+  display: block;
+  width: 100%;
+  padding: 20px 24px 48px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  font-size: 32px;
+  letter-spacing: 1.5px;
+  line-height: 1.6;
+  resize: none;
+}
+
+.sentence-input__box textarea:focus {
+  outline: none;
+}
+
+.sentence-input__box textarea::placeholder {
+  color: var(--color-muted);
+}
+
+.sentence-input__count {
+  position: absolute;
+  right: 20px;
+  bottom: 14px;
+  font-size: var(--fs-caption);
+  color: var(--color-muted);
+}
+
+.sentence-input__hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: var(--radius-control);
+  background-color: var(--color-primary-soft);
+  font-size: var(--fs-caption);
+  color: var(--color-body);
+}
+
+.sentence-input__hint .icon {
+  color: var(--color-primary);
+}
+
 .editor__area {
   flex: 1;
-  min-height: 360px;
-  padding: 36px 16px;
+  min-height: 240px;
+  padding: 28px 16px;
   font-size: 32px;
   letter-spacing: 1.5px;
   line-height: 2.1;
