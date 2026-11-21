@@ -49,19 +49,24 @@
           <p class="sentence-input__hint"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v5.5M12 7.8h.01"/></svg>Enter를 누르면 문장이 작성 결과에 추가돼요.</p>
         </div>
 
-        <!-- [html-validate-disable-next prefer-native-element -- 틀린 부분을 강조해야 해서 textarea 대신 contenteditable 사용] -->
-        <div class="editor__area" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="글 입력">
-          <p>오늘 수업에서 <mark class="err err--space">웹접근성<sup>1</sup></mark>에 대해 배웠다.</p>
-          <p>글자 사이 간격을 넓히니 <mark class="err err--spell">휠씬<sup>2</sup></mark> 읽기 쉬웠다.</p>
-          <p>다음 시간에는 직접 <mark class="err err--spell">만들어볼께<sup>3</sup></mark>.</p>
-        </div>
+        <section class="result" aria-labelledby="result-title">
+          <div class="result__head">
+            <h2 class="result__title" id="result-title">작성 결과</h2>
+            <button class="btn btn--outline-blue btn--md" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/></svg>결과 읽어주기</button>
+          </div>
+          <ol class="result__list">
+            <li>오늘 수업에서 <mark class="err err--space">웹접근성<sup>1</sup></mark>에 대해 배웠다.</li>
+            <li>글자 사이 간격을 넓히니 <mark class="err err--spell">휠씬<sup>2</sup></mark> 읽기 쉬웠다.</li>
+            <li>다음 시간에는 직접 <mark class="err err--spell">만들어볼께<sup>3</sup></mark>.</li>
+          </ol>
+        </section>
 
         <div class="editor__footer">
           <ul class="legend">
             <li class="legend__item legend__item--space">띄어쓰기</li>
             <li class="legend__item legend__item--spell">맞춤법</li>
           </ul>
-          <span class="editor__count">62자 · 교정 제안 3개</span>
+          <span class="editor__count">3문장 · 62자 · 교정 제안 3개</span>
         </div>
       </section>
 
