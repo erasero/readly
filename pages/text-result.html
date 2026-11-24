@@ -40,16 +40,12 @@
       </label>
       <label class="range-field">자간 <input class="range" type="range" min="0" max="10" value="6"></label>
       <label class="range-field">행간 <input class="range" type="range" min="0" max="10" value="5"></label>
-      <label class="switch"><input type="checkbox" checked> 헷갈리는 글자 강조</label>
+      <label class="switch"><input id="highlight" type="checkbox" checked> 헷갈리는 글자 강조</label>
       <label class="switch"><input type="checkbox" checked> 읽기 가이드</label>
     </section>
 
     <section class="card reading" aria-label="변환된 텍스트">
-      <p class="sentence sentence--far">그 이전 문장입니다. 지나간 문장은 흐리게 표시돼요.</p>
-      <p class="sentence sentence--near">이전 문장입니다. 이미 읽은 문장은 평문으로 표시돼요.</p>
-      <p class="sentence sentence--current" aria-current="true">현재 문장입니다. 지금 읽는 문장이 크게 강조돼요.</p>
-      <p class="sentence sentence--near">다음 문장: A <span class="confusable">b</span>ig <span class="confusable">d</span>og <span class="confusable">p</span>laye<span class="confusable">d</span> <span class="confusable">b</span>y the <span class="confusable">d</span>ee<span class="confusable">p</span> <span class="confusable">p</span>on<span class="confusable">d</span>.</p>
-      <p class="sentence sentence--far">그 다음 문장입니다.</p>
+      <p class="sentence" id="reading-text"></p>
     </section>
 
     <div class="player-controls">
@@ -69,5 +65,6 @@
   </main>
 
   <footer class="site-footer"></footer>
+  <script src="../js/confusable-letters.js"></script>
 </body>
 </html>

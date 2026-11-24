@@ -43,8 +43,8 @@
 }
 
 .confusable {
-  font-weight: 800;
   color: var(--rose-shade);
+  font-weight: 700;
 }
 
 .player-controls {
@@ -127,4 +127,13 @@
 .keycap .icon {
   width: 28px;
   height: 28px;
+}
+
+#reading-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#reading-text .paired-letter {
+  color: var(--blue-shade);
 }
