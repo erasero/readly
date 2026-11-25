@@ -1,0 +1,26 @@
+{
+  "name": "readly",
+  "version": "1.0.0",
+  "description": "색각이상·난독증 사용자가 이미지, 동영상, 텍스트를 자신에게 맞게 변환해 볼 수 있는 웹 서비스입니다.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erasero/readly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/erasero/readly/issues"
+  },
+  "homepage": "https://github.com/erasero/readly#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0"
+  }
+}
