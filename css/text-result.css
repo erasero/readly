@@ -181,3 +181,21 @@
 #reading-text .paired-letter {
   color: var(--blue-shade);
 }
+
+/* 읽기 가이드: 한 줄에 한 문장, 지금 읽는 문장만 선명하게 나머지는 흐리게 (js/reading-guide.js) */
+#reading-text .sentence-item {
+  display: block;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+
+#reading-text.is-guided .sentence-item {
+  filter: blur(2px);
+}
+
+#reading-text.is-guided .sentence-item.is-current {
+  filter: none;
+  background-color: var(--color-primary-soft);
+  color: var(--color-ink);
+}
+/* 읽기 가이드 */

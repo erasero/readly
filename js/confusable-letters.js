@@ -23,30 +23,35 @@ function highlightClass(letter) {
   return '';
 }
 
+  // 글은 읽기 가이드(reading-guide.js)가 문장별로 넣어둠, 칸 비움 X.
+  // 이미 들어 있는 글자에 색만 입히기 ON/OFF.
   function render() {
-    output.textContent = '';
-    if (!toggle.checked) {
-      output.textContent = source.text;
-      return;
-    }
-    const fragment = document.createDocumentFragment();
-    let plain = '';
+    output.querySelectorAll('.confusable').forEach(mark => mark.replaceWith(mark.textContent));
+    output.normalize();
+    if (!toggle.checked) return;
+    const walker = document.createTreeWalker(output, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
     const letters = new Intl.Segmenter('ko', { granularity: 'grapheme' });
-    for (const { segment: char } of letters.segment(source.text)) {
-      const className = highlightClass(char);
-      if (!className) {
-        plain += char;
-        continue;
+    for (const node of textNodes) {
+      const fragment = document.createDocumentFragment();
+      let plain = '';
+      for (const { segment: char } of letters.segment(node.data)) {
+        const className = highlightClass(char);
+        if (!className) {
+          plain += char;
+          continue;
+        }
+        fragment.append(plain);
+        plain = '';
+        const mark = document.createElement('span');
+        mark.className = className;
+        mark.textContent = char;
+        fragment.append(mark);
       }
       fragment.append(plain);
-      plain = '';
-      const mark = document.createElement('span');
-      mark.className = className;
-      mark.textContent = char;
-      fragment.append(mark);
+      node.replaceWith(fragment);
     }
-    fragment.append(plain);
-    output.append(fragment);
   }
   toggle.addEventListener('change', render);
   render();
