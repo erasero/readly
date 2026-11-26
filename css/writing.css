@@ -191,7 +191,7 @@
 
 .result__sentence {
   display: inline;
-  padding: 0px 4px;
+  padding: 2px 0;
   border: 0;
   border-radius: 4px;
   background: transparent;
@@ -215,6 +215,17 @@
 }
 .result__sentence.is-editing {
   background-color: var(--color-primary-soft);
+  outline: 1px solid var(--color-primary);
+  border-radius: 4px;
+}
+.result__empty {
+  margin:0;
+  padding:0;
+  font-size: var(--fs-caption);
+  color: var(--color-muted);
+}
+.result__sentence.is-editing {
+  background-color: var(--color-primary-soft);
   border: 1px solid var(--color-primary);
   outline: none;
   border-radius: 4px;
@@ -229,6 +240,11 @@
   font-size: var(--fs-caption);
   color: var(--color-muted);
 }
+
+.result__empty[hidden] {
+  display: none;
+}
+
 
 .result__empty[hidden] {
   display: none;
@@ -415,9 +431,21 @@
     text-decoration: line-through;
 }
 
-/* 띄어쓰기 오류: 남색 */
-.suggestions__origin--spacing {
-    color: var(--blue-shade);
+.suggestions__empty {
+  margin-top: 20px;
+  padding: 24px 12px;
+  border-radius: 12px;
+  background-color: var(--color-bg);
+  font-size: var(--fs-caption);
+  line-height: 1.6;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.tag--space {
+  border: 1.5px solid var(--blue-shade);
+  background-color: var(--blue-tint);
+  color: var(--blue-shade);
 }
 
 /* 맞춤법 오류: 마젠타 */
@@ -461,4 +489,10 @@
     line-height: 1.6;
     text-align: center;
     color: var(--color-muted);
+}
+
+#voiceInputBtn.is-recording {
+    background-color: #eaf2ff;
+    border-color: #4385d8;
+    color: #2766b5;
 }
