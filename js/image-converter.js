@@ -51,7 +51,7 @@ const ANGLES = {
 // 색각 유형별 보정 강도
 const STRENGTH = {
     protan: 0.8,
-    deutan: 0.8,
+    deutan: 0.3,
     tritan: 0.8
 };
 
