@@ -23,7 +23,7 @@ function updateTextSpacing() {
     const letterValue = Number(letterSpacingRange.value);
     const lineValue = Number(lineHeightRange.value);
 
-    // 자간: 0.5px ~ 2px
+    // 자간: 0.5px ~ 3px
     const letterSpacing = 0.5 + letterValue * 0.25;
 
     // 행간: 1.3 ~ 1.9
@@ -55,7 +55,14 @@ function updateCharCount() {
 }
 
 function updateSentenceHighlight() {
-    sentenceHighlight.textContent = sentenceInput.value;
+     if (window.ReadlySpellcheck) {
+        window.ReadlySpellcheck.renderHighlight(
+            sentenceHighlight,
+            sentenceInput.value
+        );
+    } else {
+        sentenceHighlight.textContent = sentenceInput.value;
+    }
     // 스크롤 위치도 동기화
     sentenceHighlight.scrollTop = sentenceInput.scrollTop;
 }
@@ -143,10 +150,20 @@ function loadSentence(id) {
     // 안내 문구 변경
     sentenceHintText.textContent =
         "문장을 수정한 뒤 Enter를 누르면 기존 문장이 교체돼요.";
+
+    sentenceInput.dispatchEvent(new Event("input", {
+        bubbles: true
+    }));
 }
 
 function confirmSentence() {
-    const text = sentenceInput.value.trim();
+
+    let text = sentenceInput.value;
+
+    if (window.ReadlySpellcheck) {
+        text = window.ReadlySpellcheck.applyAccepted(text);
+    }
+    text = text.trim();
 
     // 빈 문장은 확정하지 않음
     if (text === "") {
@@ -189,6 +206,12 @@ function confirmSentence() {
     // 안내 문구 초기화
     sentenceHintText.textContent =
         "Enter를 누르면 문장이 작성 결과에 추가돼요.";
+
+    sentenceInput.dispatchEvent(new Event("input", {
+        bubbles: true
+    }));
+
+    sentenceInput.focus();
 }
 
 
@@ -200,9 +223,6 @@ function updateResultCount() {
     for (let i = 0; i < sentences.length; i++) {
         totalLength += sentences[i].text.length;
     }
-
-    editorCount.textContent =
-        `${sentences.length}문장 · ${totalLength}자 · 교정 제안 0개`;
 
     // 다음 입력할 문장 번호
     sentenceLabel.textContent = `문장 ${sentences.length + 1}`;
@@ -303,9 +323,6 @@ readResultBtn.addEventListener("click", () => {
     readResultBtn.textContent = "읽기 중지";
 });
 
-updateCharCount();
-updateSentenceLabel();
-renderSentences();
 
 const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -416,3 +433,16 @@ if (SpeechRecognition) {
         alert("현재 브라우저에서는 음성 입력을 지원하지 않습니다. Chrome 또는 Edge를 이용해 주세요.");
     });
 }
+
+window.ReadlyWriting = {
+    updateResultCount,
+    updateSentenceHighlight,
+    updateCharCount,
+    renderSentences,
+    loadSentence,
+    confirmSentence
+};
+
+updateCharCount();
+updateSentenceLabel();
+renderSentences();

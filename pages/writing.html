@@ -75,8 +75,25 @@
 
       <section class="card suggestions" aria-labelledby="sugg-title">
         <div class="suggestions__head">
-          <h2 class="suggestions__title" id="sugg-title">교정 제안 3</h2>
-          <button class="btn btn--outline-blue btn--sm" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 13l4 4 8-9M10 16l1 1 9-10"/></svg>모두 적용</button>
+          <h2 class="suggestions__title" id="sugg-title">교정 제안 - 0개</h2>
+          <div class="suggestion-legend">
+    <div class="suggestion-legend__item">
+        <span class="suggestion-legend__color suggestion-legend__color--spacing"></span>
+        <span>띄어쓰기</span>
+    </div>
+
+    <div class="suggestion-legend__item">
+        <span class="suggestion-legend__color suggestion-legend__color--spell"></span>
+        <span>맞춤법</span>
+    </div>
+</div>
+          <button
+    id="confirmSentenceBtn"
+    class="btn btn--outline-blue btn--sm"
+    type="button"
+>
+    일괄 적용
+</button>
         </div>
 
         <ol id="suggestionsList" class="suggestions__list"></ol>
@@ -87,6 +104,7 @@
   </main>
 
   <footer class="site-footer"></footer>
-   <script type="module" src="../js/writing.js"></script>
+   <script src="../js/writing.js" defer></script>
+   <script src="../js/writing-spellcheck.js" defer></script>
 </body>
 </html>
