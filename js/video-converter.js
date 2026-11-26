@@ -62,6 +62,8 @@ export function createVideoProcessor(videoElement, canvasElement, colorType){
     videoElement.addEventListener('loadedmetadata', () => {
         canvasElement.width = videoElement.videoWidth;
         canvasElement.height = videoElement.videoHeight;
+
+        videoElement.currentTime = Math.min(0.001, videoElement.duration || 0);
     });
 
     videoElement.addEventListener('loaddeddata', renderSingleFrame);

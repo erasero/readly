@@ -289,7 +289,12 @@ async function initVideoResult(){
 
     const videoEl = document.createElement('video');
     videoEl.playsInline = true;
-    videoEl.hidden = true;
+    videoEl.preload = 'auto';
+    videoEl.style.position = 'absolute';
+    videoEl.style.width = '1px';
+    videoEl.style.height = '1px';
+    videoEl.style.opacity = '0';
+    videoEl.style.pointerEvents = 'none';
 
     const canvasEl = document.createElement('canvas');
     canvasEl.style.width = '100%';
