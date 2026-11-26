@@ -22,23 +22,99 @@
   --rose-tint: #f7dce8;
   --rose-shade: #a0245a;
 
-  /* type scale (1920px 기준) */
-  --fs-hero: 72px;
-  --fs-title: 60px;
-  --fs-card-title: 44px;
-  --fs-label: 34px;
-  --fs-body: 30px;
-  --fs-small: 26px;
-  --fs-caption: 24px;
+  /* type scale (mobile first, 1rem = 16px) */
+  --fs-hero: 2rem;
+  --fs-title: 1.75rem;
+  --fs-card-title: 1.375rem;
+  --fs-label: 1.25rem;
+  --fs-body: 1.125rem;
+  --fs-small: 1rem;
+  --fs-caption: 0.9375rem;
 
   /* layout */
   --content-width: 1408px;
-  --header-height: 120px;
-  --footer-height: 73px;
-  --radius-card: 20px;
-  --radius-control: 12px;
+  --page-gutter: 1rem;
+  --main-pad: 1.5rem;
+  --section-gap: 1.5rem;
+  --header-height: 4rem;
+  --footer-height: 3rem;
+  --logo-mark: 2.25rem;
+  --icon-badge: 3.5rem;
+  --control-height: 3rem;
+  --control-height-sm: 2.75rem;
+  --dropzone-height: 12rem;
+  --radius-card: 1rem;
+  --radius-control: 0.625rem;
 
   --font-base: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --fs-hero: 2.75rem;
+    --fs-title: 2.25rem;
+    --fs-card-title: 1.75rem;
+    --fs-label: 1.5rem;
+    --fs-body: 1.25rem;
+    --fs-small: 1.125rem;
+    --fs-caption: 1rem;
+
+    --page-gutter: 2rem;
+    --main-pad: 2rem;
+    --section-gap: 1.75rem;
+    --header-height: 5rem;
+    --footer-height: 3.5rem;
+    --logo-mark: 2.5rem;
+    --icon-badge: 4.5rem;
+    --control-height: 3.25rem;
+    --dropzone-height: 15rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --fs-hero: 3.25rem;
+    --fs-title: 2.75rem;
+    --fs-card-title: 2rem;
+    --fs-label: 1.75rem;
+    --fs-body: 1.5rem;
+    --fs-small: 1.25rem;
+    --fs-caption: 1.125rem;
+
+    --page-gutter: 3rem;
+    --main-pad: 2.5rem;
+    --section-gap: 2rem;
+    --header-height: 6rem;
+    --footer-height: 4rem;
+    --logo-mark: 2.75rem;
+    --icon-badge: 5rem;
+    --control-height: 3.5rem;
+    --dropzone-height: 17.5rem;
+    --radius-card: 1.25rem;
+    --radius-control: 0.75rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --fs-hero: 4.5rem;
+    --fs-title: 3.75rem;
+    --fs-card-title: 2.75rem;
+    --fs-label: 2.125rem;
+    --fs-body: 1.875rem;
+    --fs-small: 1.625rem;
+    --fs-caption: 1.5rem;
+
+    --page-gutter: 5rem;
+    --main-pad: 3rem;
+    --section-gap: 2.25rem;
+    --header-height: 7.5rem;
+    --footer-height: 4.5625rem;
+    --logo-mark: 3rem;
+    --icon-badge: 5.5rem;
+    --control-height: 4rem;
+    --dropzone-height: 18.75rem;
+  }
 }
 
 /* ========== Reset ========== */
