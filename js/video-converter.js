@@ -19,7 +19,20 @@ export function createVideoProcessor(videoElement, canvasElement, colorType){
 
         if(!isOriginalMode){
             const frameData = ctx.getImageData(0, 0, width, height);
-            const convertedData = daltonizeImageData(frameData, colorType);
+            let strength = 0.0;
+
+            if(colorType === "protan"){
+                strength = 3.5;
+            }
+            else if(colorType === "deutan"){
+                strength = 8.0;
+            }
+            else if(colorType === "tritan"){
+                strength = 5.0;
+            }
+
+            const convertedData = daltonizeImageData(frameData, colorType, {strength});
+            
             ctx.putImageData(convertedData, 0, 0);
         }
     }

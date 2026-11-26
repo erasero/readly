@@ -1,70 +1,161 @@
-const STRENGTH = {protan: 1.0, deutan: 1.25, tritan: 0.6};
 
-//색각 유형별 시뮬레이션 및 보정
-export function daltonizeImageData(imageData, colorType){
-    const data = imageData.data;
+const MACHADO = {
+    protan: [
+        0.152286, 1.052583, -0.204868,
+        0.114503, 0.786281, 0.099216,
+        -0.003882, -0.048116, 1.051998
+    ],
+    deutan: [
+        0.367322, 0.860646, -0.227968,
+        0.280085, 0.672501, 0.047413,
+        -0.011820, 0.042940, 0.968881
+    ],
+    tritan: [
+        1.255528, -0.076749, -0.178779,
+        -0.078411, 0.930809, 0.147602,
+        0.004733, 0.691367, 0.303900
+    ]
+};
 
-    for(let i = 0; i < data.length; i += 4){
-        const r = data[i];
-        const g = data[i + 1];
-        const b = data[i + 2];
+const REDISTRIBUTION = {
+    protan: [
+        0, 0, 0,
+        0.7, 1, 0,
+        0.7, 0, 1
+    ],
+    deutan: [
+        1, 0.7, 0,
+        0, 0, 0,
+        0, 0.7, 1
+    ],
+    tritan: [
+        1, 0, 0.7,
+        0, 1, 0.7,
+        0, 0, 0
+    ]
+};
 
-        //RGB에서 LMS 원추세포 반응값으로 변환
-        const L = 17.8824 * r + 43.5161 * g + 4.11935 * b;
-        const M = 3.45565 * r + 27.1554 * g + 3.86714 * b;
-        const S = 0.0299566 * r + 0.184309 * g + 1.46709 * b;
+const YR = 0.2126;
+const YG = 0.7152;
+const YB = 0.0722;
+const YN = YR * YR + YG * YG + YB * YB;
 
-        //색각 유형에 따른 시뮬레이션 값 계산
-        let lSim = L;
-        let mSim = M;
-        let sSim = S;
+const TO_LINEAR = new Float32Array(256);
 
-        if(colorType === 'protan'){
-            lSim = 2.02344 * M - 2.52581 * S;
+for (let i = 0; i < 256; i++) {
+    const v = i / 255;
+
+    TO_LINEAR[i] = v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+}
+
+function toSrgb(value) {
+    value = Math.max(0, Math.min(1, value));
+
+    return value <= 0.0031308 ? 12.92 * value : 1.055 * Math.pow(value, 1 / 2.4) - 0.055;
+}
+
+function processPixel(r, g, b, matrix, correction, strength) {
+    const sr = matrix[0] * r + matrix[1] * g + matrix[2] * b;
+    const sg = matrix[3] * r + matrix[4] * g + matrix[5] * b;
+    const sb = matrix[6] * r + matrix[7] * g + matrix[8] * b;
+
+    const er = r - sr;
+    const eg = g - sg;
+    const eb = b - sb;
+
+    let dr = correction[0] * er + correction[1] * eg + correction[2] * eb;
+    let dg = correction[3] * er + correction[4] * eg + correction[5] * eb;
+    let db = correction[6] * er + correction[7] * eg + correction[8] * eb;
+
+    const magnitude2 = er * er + eg * eg + eb * eb;
+    const threshold = 0.015 * 0.015;
+    const maxError = 0.15 * 0.15;
+
+    let t = Math.max(0, Math.min(1, (magnitude2 - threshold) / (maxError - threshold)));
+
+    t = t * t * (3 - 2 * t);
+    const amount = strength * t;
+
+    dr *= amount;
+    dg *= amount;
+    db *= amount;
+
+    const projection = (dr * YR + dg * YG + db * YB) / YN;
+
+    dr -= projection * YR;
+    dg -= projection * YG;
+    db -= projection * YB;
+
+    const nr = r + dr;
+    const ng = g + dg;
+    const nb = b + db;
+
+    const y = nr * YR + ng * YG + nb * YB;
+    const neutral = Math.max(0, Math.min(1, y));
+
+    let scale = 1;
+
+    let c = nr - y;
+    if (c > 0) scale = Math.min(scale, (1 - neutral) / c);
+    else if (c < 0) scale = Math.min(scale, neutral / -c);
+
+    c = ng - y;
+    if (c > 0) scale = Math.min(scale, (1 - neutral) / c);
+    else if (c < 0) scale = Math.min(scale, neutral / -c);
+
+    c = nb - y;
+    if (c > 0) scale = Math.min(scale, (1 - neutral) / c);
+    else if (c < 0) scale = Math.min(scale, neutral / -c);
+
+    scale = Math.max(0, Math.min(1, scale));
+
+    return [
+        toSrgb(neutral + (nr - y) * scale),
+        toSrgb(neutral + (ng - y) * scale),
+        toSrgb(neutral + (nb - y) * scale)
+    ];
+}
+
+export function daltonizeImageData(imageData, colorType = "all", options = {}) {
+    const types = colorType === "all" ? ["protan", "deutan", "tritan"] : [colorType];
+    const strength = options.strength ?? 0.7;
+
+    for (const type of types) {
+        if (!MACHADO[type]) {
+            throw new Error("Invalid color type: " + type);
         }
-        else if(colorType === 'deutan'){
-            mSim = 0.494207 * L + 1.24827 * S;
-        }
-        else if(colorType === 'tritan'){
-            sSim = -0.395913 * L + 0.801109 * M;
-        }
-
-        //시뮬레이션 LMS에서 RGB로 역변환
-        const rSim = 0.0809444479 * lSim - 0.130504409 * mSim + 0.116721066 * sSim;
-        const gSim = -0.0102485335 * lSim + 0.0540193266 * mSim - 0.113614708 * sSim;
-        const bSim = -0.000365296938 * lSim - 0.00412161469 * mSim + 0.693511405 * sSim;
-
-        //원본과 시뮬레이션 간 오차 추출
-        const errR = r - rSim;
-        const errG = g - gSim;
-        const errB = b - bSim;
-
-        //오차를 인지 가능한 채널로 이동시켜 원본에 보정 적용
-        let outR = r;
-        let outG = g;
-        let outB = b;
-
-        if(colorType === 'protan'){
-            const s = STRENGTH.protan;
-            outG = g + s * (0.7 * errR + errG);
-            outB = b + s * (0.7 * errR + errB);
-        }
-        else if(colorType === 'deutan'){
-            const s = STRENGTH.deutan;
-            outR = r + s * (0.4 * errR - 0.3 * errG);
-            outG = g + s * (0.5 * errG);
-            outB = b + s * (0.85 * errG - 0.5 * errR + errB);
-        }
-        else if(colorType === 'tritan'){
-            const s = STRENGTH.tritan;
-            outR = r + s * (errR + 0.7 * errB);
-            outG = g + s * (errG + 0.7 * errB);
-        }
-
-        data[i] = Math.min(255, Math.max(0, outR));
-        data[i + 1] = Math.min(255, Math.max(0, outG));
-        data[i + 2] = Math.min(255, Math.max(0, outB));
     }
 
-    return imageData
+    const data = imageData.data;
+    const source = new Uint8ClampedArray(data);
+
+    const count = types.length;
+
+    const matrices = types.map(type => MACHADO[type]);
+    const corrections = types.map(type => REDISTRIBUTION[type]);
+
+    for (let i = 0; i < data.length; i += 4) {
+        const r = TO_LINEAR[source[i]];
+        const g = TO_LINEAR[source[i + 1]];
+        const b = TO_LINEAR[source[i + 2]];
+
+        let outR = 0;
+        let outG = 0;
+        let outB = 0;
+
+        for (let j = 0; j < count; j++) {
+            const result = processPixel(r, g, b, matrices[j], corrections[j], strength);
+
+            outR += result[0] / count;
+            outG += result[1] / count;
+            outB += result[2] / count;
+        }
+
+        data[i] = Math.round(outR * 255);
+        data[i + 1] = Math.round(outG * 255);
+        data[i + 2] = Math.round(outB * 255);
+        data[i + 3] = source[i + 3];
+    }
+
+    return imageData;
 }
