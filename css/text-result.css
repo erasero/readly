@@ -182,39 +182,20 @@
   color: var(--blue-shade);
 }
 
-/* 읽기 가이드 */
-/* 읽기 가이드(리딩 룰러): 한 줄에 한 문장, 화면의 현재 줄만 선명하게 나머지 줄은 흐리게 (js/reading-guide.js) */
+/* 읽기 가이드: 한 줄에 한 문장, 지금 읽는 문장만 선명하게 나머지는 흐리게 (js/reading-guide.js) */
 #reading-text .sentence-item {
   display: block;
-}
-
-.reading.has-ruler {
-  position: relative;
-  isolation: isolate;
-}
-
-.reading.has-ruler #reading-text {
-  position: relative;
-  z-index: 1;
-}
-
-.reading-ruler__band,
-.reading-ruler__mask {
-  position: absolute;
-  pointer-events: none;
-}
-
-.reading-ruler__band {
-  z-index: 0;
+  padding: 4px 12px;
   border-radius: 8px;
-  background-color: var(--color-primary-soft);
 }
 
-.reading-ruler__mask {
-  z-index: 2;
-  background-color: color-mix(in srgb, var(--color-surface) 35%, transparent);
-  -webkit-backdrop-filter: blur(2px);
-  backdrop-filter: blur(2px);
+#reading-text.is-guided .sentence-item {
+  filter: blur(2px);
 }
+
+#reading-text.is-guided .sentence-item.is-current {
+  filter: none;
+  background-color: var(--color-primary-soft);
+  color: var(--color-ink);
 }
 /* 읽기 가이드 */
