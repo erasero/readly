@@ -5,6 +5,7 @@ const ICONS = {
 };
 
 const ALLOWED_VIDEOS = ['video/mp4'];
+const ALLOWED_IMAGES = ['image/jpeg', 'image/png'];
 
 //selected-file의 용량 표시 부분을 위해 바이트 단위를 MB/KB 단위로 변경
 function formatFileSize(bytes){
@@ -37,6 +38,9 @@ export function colorUploader({onSubmit}){
 
         if(ALLOWED_VIDEOS.includes(file.type)){
             currentMediaType = 'video';
+        }
+        else if(ALLOWED_IMAGES.includes(file.type)){
+            currentMediaType = 'image';
         }
         else{
             alert('JPG, PNG 이미지 또는 MP4 동영상만 업로드할 수 있습니다.');
