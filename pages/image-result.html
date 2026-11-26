@@ -39,32 +39,28 @@
     <p id="result-status" class="result-status" role="status" aria-live="polite">이미지를 불러오는 중입니다.</p>
 
     <div class="compare">
-      <figure class="compare__item">
-        <figcaption class="compare__label">
-          원본
-        </figcaption>
 
-        <div class="card compare__frame">
-          <canvas id="original-canvas"
-                class="image-canvas"
-                role="img"
-                aria-label="원본 이미지">
-          </canvas>
-        </div>
+     <figure class="compare__item" style="min-width: 0;">
+       <figcaption class="compare__label">원본</figcaption>
+          <div class="card compare__frame" style="min-width: 0; overflow: hidden;">
+            <canvas id="original-canvas"
+              style="display: block; max-width: 100%; height: auto; object-fit: contain;"
+              role="img"
+              aria-label="원본 이미지">
+            </canvas>
+          </div>
       </figure>
-      <figure class="compare__item">
-        <figcaption class="compare__label">
-          변환 결과
-        </figcaption>
+      <figure class="compare__item" style="min-width: 0;">
+      <figcaption class="compare__label">변환 결과</figcaption>
+          <div class="card compare__frame" style="min-width: 0; overflow: hidden;">
+            <canvas id="result-canvas"
+              style="display: block; max-width: 100%; height: auto; object-fit: contain;"
+              role="img"
+              aria-label="색상 보정된 이미지">
+            </canvas>
+          </div>
+      </figure>
 
-        <div class="card compare__frame">
-          <canvas id="result-canvas"
-                class="image-canvas"
-                role="img"
-                aria-label="색상 보정된 이미지">
-          </canvas>
-        </div>
-      </figure>
     </div>
   </main>
 
