@@ -64,16 +64,31 @@
     });
   }
 
-  // 지금 문장을 step만큼 옮긴다. 첫 문장과 마지막 문장에서는 멈춘다.
-  function move(step) {
-    if (!guideToggle.checked) return;
-    const next = Math.min(Math.max(current + step, 0), sentences.length - 1);
+    // 지금 문장을 index번 문장으로 옮긴다. 첫 문장과 마지막 문장에서는 멈춘다.
+  // source는 누가 옮겼는지('guide': 버튼·키, 'tts': 소리로 듣기)를 알려 준다.
+  function goTo(index, source = 'guide') {
+    const next = Math.min(Math.max(index, 0), sentences.length - 1);
     if (next === current) return;
     current = next;
     update();
-    sentences[current].scrollIntoView({ block: 'nearest' });
+    if (guideToggle.checked) sentences[current].scrollIntoView({ block: 'nearest' });
+    output.dispatchEvent(new CustomEvent('readly:sentence-change', { detail: { index: current, source } }));
   }
 
+  // 버튼·키로 지금 문장을 step만큼 옮긴다.
+  function move(step) {
+    if (!guideToggle.checked) return;
+    goTo(current + step);
+  }
+
+  // TTS(tts.js)가 문장 목록과 지금 문장을 쓸 수 있게 열어 둔다.
+  window.readingGuide = {
+    get count() { return sentences.length; },
+    get current() { return current; },
+    textAt: index => sentences[index].textContent,
+    goTo,
+  };
+  
   prevButton.addEventListener('click', () => move(-1));
   nextButton.addEventListener('click', () => move(1));
   guideToggle.addEventListener('change', update);
