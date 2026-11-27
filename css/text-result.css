@@ -208,3 +208,13 @@
   color: var(--color-muted);
   text-align: center;
 }
+
+/* 소리로 듣기 버튼 아이콘: 읽는 중에는 일시정지 아이콘 (aria-pressed는 js/tts.js가 바꾼다) */
+#tts-play .tts-icon--pause,
+#tts-play[aria-pressed="true"] .tts-icon--play {
+  display: none;
+}
+
+#tts-play[aria-pressed="true"] .tts-icon--pause {
+  display: block;
+}
