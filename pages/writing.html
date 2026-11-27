@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>湲?곌린 媛?대뱶 | Readly</title>
+  <title>글쓰기 가이드 | Readly</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/writing.css">
@@ -14,58 +14,59 @@
       <span class="logo-mark" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.2"/></svg></span>
       Readly
     </a>
-    <a class="help-link" href="#">?꾩?留?/a>
+    <a class="help-link" href="#">도움말</a>
   </header>
 
   <main class="writing">
     <section class="page-heading">
-      <a class="back-link" href="../index.html">???덉쑝濡?/a>
+      <a class="back-link" href="../index.html">← 홈으로</a>
       <div class="page-title-row">
         <span class="feature-icon feature-icon--writing">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19l1-4 10-10 3 3-10 10z"/><path d="M14 7l3 3"/><path d="M12 20h7"/></svg>
         </span>
-        <h1 class="page-title">湲?곌린 媛?대뱶</h1>
+        <h1 class="page-title">글쓰기 가이드</h1>
       </div>
-      <p class="page-desc">湲???곌퀬 寃?ы븯硫?留욎땄踰뺢낵 ?꾩뼱?곌린瑜??쎄쾶 怨좎튌 ???덉뼱??</p>
+      <p class="page-desc">글을 쓰고 검사하면 맞춤법과 띄어쓰기를 쉽게 고칠 수 있어요.</p>
     </section>
 
     <div class="writing-layout">
-      <section class="card editor" aria-label="湲?곌린">
+      <section class="card editor" aria-label="글쓰기">
         <div class="editor__toolbar">
-          <label class="range-field">?먭컙 <input id="letterSpacing" class="range" type="range" min="0" max="10" value="5"></label>
-          <label class="range-field">?됯컙 <input id="lineHeight" class="range" type="range" min="0" max="10" value="5"></label>
+          <label class="range-field">자간 <input id="letterSpacing" class="range" type="range" min="0" max="10" value="5"></label>
+          <label class="range-field">행간 <input id="lineHeight" class="range" type="range" min="0" max="10" value="5"></label>
         </div>
 
         <div class="sentence-input">
           
           <div class="sentence-input__head">
-            <label id="sentenceLabel" class="sentence-input__label" for="sentence">臾몄옣 1</label>
-            <button id="voiceInputBtn" class="btn btn--outline-blue btn--md" type="button" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>?뚯꽦 ?낅젰</button>
+            <label id="sentenceLabel" class="sentence-input__label" for="sentence">문장 1</label>
+            <button id="voiceInputBtn" class="btn btn--outline-blue btn--md" type="button" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>음성 입력</button>
           </div>
           
           <div class="sentence-input__box">
             <div id="sentenceHighlight" class="sentence-input__highlight" aria-hidden="true"></div>
-            <textarea id="sentence" name="sentence" rows="2" maxlength="200" placeholder="臾몄옣???낅젰?섏꽭??></textarea>
+            <textarea id="sentence" name="sentence" rows="2" maxlength="200" placeholder="문장을 입력하세요"></textarea>
             
             <span id="sentenceCount" class="sentence-input__count">
-              0 / 200??            </span>
+              0 / 200자
+            </span>
           
           </div>
-          <p id="sentenceHint" class="sentence-input__hint"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v5.5M12 7.8h.01"/></svg><span id="sentenceHintText">Enter瑜??꾨Ⅴ硫?臾몄옣???묒꽦 寃곌낵??異붽??쇱슂.</span></p>
+          <p id="sentenceHint" class="sentence-input__hint"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 11v5.5M12 7.8h.01"/></svg><span id="sentenceHintText">Enter를 누르면 문장이 작성 결과에 추가돼요.</span></p>
         </div>
 
         <section class="result" aria-labelledby="result-title">
           <div class="result__head">
-            <h2 class="result__title" id="result-title">?묒꽦 寃곌낵</h2>
+            <h2 class="result__title" id="result-title">작성 결과</h2>
 
             <div class="result__actions">
-              <button id="readResultBtn" class="btn btn--outline-blue btn--md" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/></svg>寃곌낵 ?쎌뼱二쇨린</button>
-              <button id="copyResultBtn" class="btn btn--outline-blue btn--md" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9zM5 15H4V4h11v1"/></svg>寃곌낵 蹂듭궗?섍린</button>
+              <button id="readResultBtn" class="btn btn--outline-blue btn--md" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16.5 9a4 4 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/></svg>결과 읽어주기</button>
+              <button id="copyResultBtn" class="btn btn--outline-blue btn--md" type="button"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 9h11v11H9zM5 15H4V4h11v1"/></svg>결과 복사하기</button>
             </div>
           </div>
           <div class="result__body">
-            <ol id="resultList" class="result__list" aria-label="?뺤젙??臾몄옣 紐⑸줉"></ol>
-            <p id="resultEmpty" class="result__empty">?뺤젙??臾몄옣???ш린???쒖떆?⑸땲??</p>
+            <ol id="resultList" class="result__list" aria-label="확정된 문장 목록"></ol>
+            <p id="resultEmpty" class="result__empty">확정된 문장이 여기에 표시됩니다.</p>
           </div>
           
         </section>
@@ -74,16 +75,16 @@
 
       <section class="card suggestions" aria-labelledby="sugg-title">
         <div class="suggestions__head">
-          <h2 class="suggestions__title" id="sugg-title">援먯젙 ?쒖븞 - 0媛?/h2>
+          <h2 class="suggestions__title" id="sugg-title">교정 제안 - 0개</h2>
           <div class="suggestion-legend">
     <div class="suggestion-legend__item">
         <span class="suggestion-legend__color suggestion-legend__color--spacing"></span>
-        <span>?꾩뼱?곌린</span>
+        <span>띄어쓰기</span>
     </div>
 
     <div class="suggestion-legend__item">
         <span class="suggestion-legend__color suggestion-legend__color--spell"></span>
-        <span>留욎땄踰?/span>
+        <span>맞춤법</span>
     </div>
 </div>
           <button
@@ -91,18 +92,19 @@
     class="btn btn--outline-blue btn--sm"
     type="button"
 >
-    ?쇨큵 ?곸슜
+    일괄 적용
 </button>
         </div>
 
         <ol id="suggestionsList" class="suggestions__list"></ol>
 
-        <p id="suggestionsEmpty" class="suggestions__empty">?꾩옱 臾몄옣??援먯젙 ?쒖븞???ш린???쒖떆?⑸땲??</p>
+        <p id="suggestionsEmpty" class="suggestions__empty">현재 문장의 교정 제안이 여기에 표시됩니다.</p>
       </section>
     </div>
   </main>
 
   <footer class="site-footer"></footer>
-   <script type="module" src="../js/writing.js"></script>
+   <script src="../js/writing.js" defer></script>
+   <script src="../js/writing-spellcheck.js" defer></script>
 </body>
 </html>
