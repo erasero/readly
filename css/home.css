@@ -1,7 +1,7 @@
 /* 홈 */
 .hero {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 1.5rem;
 }
 
 .hero__title {
@@ -11,32 +11,48 @@
 }
 
 .hero__desc {
-  margin-top: 12px;
+  margin-top: 0.5rem;
+  font-size: var(--fs-body);
   color: var(--color-body);
 }
 
+/* 폰: 1열, 카드는 아이콘 왼쪽 + 글 오른쪽 */
 .feature-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
 .feature-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  align-items: start;
+  column-gap: 1rem;
   height: 100%;
-  min-height: 590px;
-  padding: 40px;
+  padding: 1.25rem;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.feature-card > * {
+  grid-column: 2;
+}
+
+.feature-card > .feature-icon--large {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.feature-card .tag {
+  justify-self: start;
 }
 
 .feature-card:hover,
 .feature-card:focus-visible {
-  transform: translateY(-8px);
+  transform: translateY(-4px);
   border-color: var(--color-primary);
   background-color: #f5f8ff;
-  box-shadow: 0 0 0 2.5px var(--color-primary), 0 16px 32px rgba(28, 34, 48, 0.12);
+  box-shadow: 0 0 0 2.5px var(--color-primary), 0 12px 24px rgba(28, 34, 48, 0.12);
 }
 
 .feature-card:hover .feature-card__title,
@@ -45,20 +61,125 @@
 }
 
 .feature-icon--large {
-  width: 184px;
-  height: 184px;
-  border-radius: 36px;
-  margin-bottom: 24px;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 1rem;
 }
 
 .feature-card__title {
-  margin-top: 16px;
+  margin-top: 0.5rem;
   font-size: var(--fs-card-title);
   font-weight: 700;
 }
 
 .feature-card__desc {
-  margin-top: 12px;
-  font-size: 28px;
+  margin-top: 0.25rem;
+  font-size: var(--fs-small);
   color: var(--color-body);
+}
+
+/* 태블릿: 2열, 카드는 위아래 배치, 마지막 카드는 가로로 길게 */
+@media (min-width: 768px) {
+  .hero {
+    margin-bottom: 2rem;
+  }
+
+  .feature-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+  }
+
+  .feature-icon--large {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-card__title {
+    margin-top: 0.75rem;
+  }
+
+  .feature-card__desc {
+    margin-top: 0.5rem;
+  }
+
+  .feature-list > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .feature-list > li:last-child:nth-child(odd) .feature-card {
+    display: grid;
+    column-gap: 2rem;
+  }
+
+  .feature-list > li:last-child:nth-child(odd) .feature-icon--large {
+    margin-bottom: 0;
+  }
+}
+
+/* 노트북: 3열 */
+@media (min-width: 1024px) {
+  .feature-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .feature-list > li:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .feature-list > li:last-child:nth-child(odd) .feature-card {
+    display: flex;
+  }
+
+  .feature-list > li:last-child:nth-child(odd) .feature-icon--large {
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-card {
+    min-height: 26rem;
+    padding: 2.25rem;
+  }
+
+  .feature-card:hover,
+  .feature-card:focus-visible {
+    transform: translateY(-8px);
+  }
+
+  .feature-icon--large {
+    width: 8.5rem;
+    height: 8.5rem;
+    border-radius: 1.75rem;
+  }
+}
+
+/* 큰 화면: 기존 Figma 크기 */
+@media (min-width: 1440px) {
+  .hero {
+    margin-bottom: 3rem;
+  }
+
+  .feature-card {
+    min-height: 36.875rem;
+    padding: 2.5rem;
+  }
+
+  .feature-icon--large {
+    width: 11.5rem;
+    height: 11.5rem;
+    border-radius: 2.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .feature-card__desc {
+    font-size: 1.75rem;
+  }
 }
