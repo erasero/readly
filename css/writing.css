@@ -224,6 +224,27 @@
   font-size: var(--fs-caption);
   color: var(--color-muted);
 }
+.result__sentence.is-editing {
+  background-color: var(--color-primary-soft);
+  border: 1px solid var(--color-primary);
+  outline: none;
+  border-radius: 4px;
+  padding: 0px 6px;
+
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.result__empty {
+  margin:0;
+  padding:0;
+  font-size: var(--fs-caption);
+  color: var(--color-muted);
+}
+
+.result__empty[hidden] {
+  display: none;
+}
+
 
 .result__empty[hidden] {
   display: none;
@@ -292,54 +313,125 @@
   color: var(--color-muted);
 }
 
-.suggestions {
-  padding: 28px 24px;
+#voiceInputBtn.is-recording {
+    background-color: #eaf2ff;
+    border-color: #4385d8;
+    color: #2766b5;
 }
 
+
+.tag--space {
+  border: 1.5px solid var(--blue-shade);
+  background-color: var(--blue-tint);
+  color: var(--blue-shade);
+}
+
+.tag--spell {
+  background-color: var(--rose-shade);
+}
+
+
+/* ==============================
+   교정 제안 영역
+============================== */
+
+.suggestions {
+    padding: 28px 24px;
+}
+
+/* 제목 + 범례 + 일괄 적용 버튼 */
 .suggestions__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+        "title button"
+        "legend button";
+    align-items: center;
+    column-gap: 24px;
 }
 
 .suggestions__title {
-  font-size: 32px;
-  font-weight: 700;
+    grid-area: title;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
 }
 
+/* 색상 범례 */
+.suggestion-legend {
+    grid-area: legend;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 8px;
+    font-size: 20px;
+    color: #555;
+}
+
+.suggestion-legend__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.suggestion-legend__color {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+}
+
+.suggestion-legend__color--spacing {
+    background-color: var(--blue-shade);
+    border-radius: 3px;
+}
+
+.suggestion-legend__color--spell {
+    background-color: var(--rose-shade);
+    border-radius: 50%;
+}
+
+/* 일괄 적용 버튼 */
+.suggestions__head #confirmSentenceBtn {
+    grid-area: button;
+    white-space: nowrap;
+}
+
+/* 교정 제안 목록 */
 .suggestions__list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
 }
 
-.suggestion {
-  padding: 16px 20px 18px;
-  border-radius: 14px;
-  background-color: var(--color-bg);
+/* 개별 교정 항목 */
+.suggestions__item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    padding-right: 100px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.suggestion__head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+.suggestions__content {
+    min-width: 0;
+    flex: 1;
 }
 
-.suggestion__num {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: #2b3240;
-  font-size: 22px;
-  font-weight: 700;
-  color: #ffffff;
+/* 수정 전 → 수정 후 */
+.suggestions__change {
+    margin: 0;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
-.suggestion__head .tag {
-  font-size: 22px;
+.suggestions__origin {
+    text-decoration: line-through;
 }
 
 .suggestions__empty {
@@ -359,35 +451,717 @@
   color: var(--blue-shade);
 }
 
-.tag--spell {
-  background-color: var(--rose-shade);
+/* 맞춤법 오류: 마젠타 */
+.suggestions__origin--spell {
+    color: var(--rose-shade);
 }
 
-.suggestion__actions {
-  display: flex;
-  gap: 8px;
-  margin-left: auto;
+.suggestions__arrow {
+    color: #888;
 }
 
-.suggestion__change {
-  margin-top: 14px;
-  font-size: 28px;
+.suggestions__revised {
+    font-weight: 600;
 }
 
-.suggestion__change del {
-  color: var(--color-muted);
+/* 교정 이유 */
+.suggestions__reason {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 0.85rem;
+    line-height: 1.5;
 }
 
-.suggestion__change ins {
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--color-primary);
+/* 무시한 교정 항목 */
+.suggestions__item.is-ignored {
+    opacity: 0.45;
 }
 
-.suggestion__why {
-  margin-top: 4px;
-  font-size: 23px;
-  color: var(--color-body);
+.suggestions__ignore {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    flex-shrink: 0;
+}
+/* 무시 버튼 */
+.suggestions__ignore:disabled {
+    cursor: default;
+}
+
+/* 교정 제안이 없을 때 */
+.suggestions__empty {
+    margin-top: 20px;
+    padding: 24px 12px;
+    border-radius: 12px;
+    background-color: var(--color-bg);
+    font-size: var(--fs-caption);
+    line-height: 1.6;
+    text-align: center;
+    color: var(--color-muted);
+}
+
+
+
+
+
+
+
+/* =========================================
+   반응형 웹 설정
+========================================= */
+
+/* 공통: Grid 내부 요소가 부모 너비를 넘지 않도록 설정 */
+.writing-layout,
+.editor,
+.suggestions {
+    min-width: 0;
+}
+
+.sentence-input,
+.sentence-input__box,
+.result,
+.result__body {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* 이미지 및 미디어 요소 */
+.writing img,
+.writing video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* =========================================
+   태블릿 및 모바일 (1023px 이하)
+========================================= */
+
+@media (max-width: 1023px) {
+
+    /* 글쓰기 영역과 교정 제안 영역 세로 배치 */
+    .writing-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        width: 100%;
+    }
+
+    .editor,
+    .suggestions {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* 입력 영역 */
+    .sentence-input__box textarea,
+    .sentence-input__highlight {
+        max-width: 100%;
+    }
+
+    /* 교정 제안 헤더 */
+    .suggestions__head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        column-gap: 16px;
+    }
+}
+
+
+/* =========================================
+   태블릿 (768px ~ 1023px)
+========================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .editor {
+        padding: 0 28px 28px;
+    }
+
+    .suggestions {
+        padding: 28px;
+    }
+
+    .page-title {
+        font-size: 48px;
+    }
+
+    .page-desc {
+        font-size: 24px;
+    }
+
+    .sentence-input__box textarea,
+    .sentence-input__highlight {
+        font-size: 28px;
+    }
+
+    .suggestions__title {
+        font-size: 28px;
+    }
+
+    .result__title {
+        font-size: 26px;
+    }
+
+}
+
+
+/* =========================================
+   모바일 (767px 이하)
+========================================= */
+
+@media (max-width: 767px) {
+
+    /* 전체 콘텐츠 */
+    .writing {
+        width: 100%;
+        padding: 24px 16px;
+    }
+
+    .writing-layout {
+        margin-top: 24px;
+        gap: 20px;
+    }
+
+    /* 페이지 제목 */
+    .page-title-row {
+        gap: 16px;
+    }
+
+    .feature-icon {
+        flex-shrink: 0;
+    }
+
+    .page-title {
+        font-size: 36px;
+        line-height: 1.25;
+    }
+
+    .page-desc {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    /* 글쓰기 카드 */
+    .editor {
+        padding: 0 20px 24px;
+    }
+
+    /* 자간 / 행간 조절 */
+    .editor__toolbar {
+        flex-wrap: wrap;
+        gap: 16px;
+        padding: 18px 0;
+    }
+
+    .editor__toolbar .range-field {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .editor__toolbar .range {
+        max-width: 100%;
+    }
+
+    /* 문장 입력 */
+    .sentence-input {
+        padding-top: 20px;
+        gap: 12px;
+    }
+
+    .sentence-input__head {
+        gap: 10px;
+    }
+
+    .sentence-input__label {
+        font-size: 21px;
+    }
+
+    .btn--md {
+        min-height: 44px;
+        padding: 0 12px;
+        font-size: 17px;
+    }
+
+    .sentence-input__box textarea,
+    .sentence-input__highlight {
+        padding: 16px 16px 44px;
+        font-size: 21px;
+    }
+
+    .sentence-input__count {
+        right: 14px;
+        bottom: 12px;
+        font-size: 15px;
+    }
+
+    .sentence-input__hint {
+        align-items: flex-start;
+        padding: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* 작성 결과 */
+    .result {
+        margin-top: 20px;
+        padding: 20px 0;
+    }
+
+    .result__head {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .result__title {
+        font-size: 22px;
+    }
+
+    .result__actions {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .result__actions button {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 6px;
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    .result__body {
+        padding: 14px;
+        min-height: 140px;
+    }
+
+    .result__list {
+        font-size: 18px;
+    }
+
+    .result__empty {
+        font-size: 14px;
+    }
+
+    /* 교정 제안 */
+    .suggestions {
+        padding: 20px;
+    }
+
+    .suggestions__head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "title button"
+            "legend legend";
+        column-gap: 10px;
+        row-gap: 12px;
+    }
+
+    .suggestions__title {
+        font-size: 21px;
+        line-height: 1.4;
+    }
+
+    .suggestions__head #confirmSentenceBtn {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .suggestion-legend {
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 0;
+        font-size: 14px;
+    }
+
+    .suggestion-legend__color {
+        width: 12px;
+        height: 12px;
+    }
+
+    .suggestions__list {
+        gap: 8px;
+    }
+
+    .suggestions__item {
+        gap: 8px;
+        padding: 12px 8px;
+        flex-wrap: wrap;
+    }
+
+    .suggestions__content {
+        overflow-wrap: anywhere;
+    }
+
+    .suggestions__reason {
+        font-size: 13px;
+    }
+
+    .suggestions__empty {
+        padding: 18px 12px;
+        font-size: 14px;
+    }
+
+}
+
+
+/* =========================================
+   작은 모바일 (480px 이하)
+========================================= */
+
+@media (max-width: 480px) {
+
+    .writing {
+        padding: 20px 8px;
+    }
+
+    .page-title {
+        font-size: 34px;
+    }
+
+    .page-desc {
+        font-size: 17px;
+    }
+
+    .feature-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .editor {
+        padding: 0 16px 20px;
+    }
+
+    .editor__toolbar {
+        gap: 12px;
+    }
+
+    .editor__toolbar .range-field {
+        font-size: 14px;
+    }
+
+    .sentence-input__label {
+        font-size: 19px;
+    }
+
+    .sentence-input__head .btn {
+        padding: 0 9px;
+        font-size: 13px;
+    }
+
+    .sentence-input__box textarea,
+    .sentence-input__highlight {
+        font-size: 19px;
+    }
+
+    .result__title {
+        font-size: 20px;
+    }
+
+    .result__actions button {
+        font-size: 13px;
+    }
+
+    .suggestions {
+        padding: 18px 14px;
+    }
+
+    .suggestions__title {
+        font-size: 19px;
+    }
+
+    .suggestions__head #confirmSentenceBtn {
+        font-size: 13px;
+        padding: 7px 8px;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    /* 제목과 설명글 좌우 여백 */
+    .page-title-row,
+    .page-desc {
+        padding-left: 12px;
+        padding-right: 12px;
+        box-sizing: border-box;
+    }
+
+    /* 자간 / 행간 슬라이더 좌우 여백 및 넘침 방지 */
+    .editor__toolbar {
+        padding-left: 16px;
+        padding-right: 16px;
+        box-sizing: border-box;
+        gap: 12px;
+    }
+
+    .editor__toolbar .range-field {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .editor__toolbar .range {
+        flex: 1;
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+/* =========================================
+   태블릿: 일괄 적용 버튼 오른쪽 위 정렬
+========================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .suggestions__head {
+        align-items: start;
+    }
+
+    .suggestions__head #confirmSentenceBtn {
+        align-self: start;
+        justify-self: end;
+        margin-top: 0;
+    }
+    .suggestions__list {
+        margin-top: 0;
+    }
+
+}
+
+/* =========================================
+   모바일: 교정 제안 영역 간격 및 버튼 조정
+========================================= */
+
+@media (max-width: 767px) {
+
+    /* 교정 제안 카드 내부 여백 */
+    .suggestions {
+        padding: 20px 18px;
+    }
+
+    /* 제목과 일괄 적용 버튼 */
+    .suggestions__head {
+        column-gap: 12px;
+        row-gap: 8px;
+    }
+
+    .suggestions__title {
+        font-size: 22px;
+    }
+
+    /* 범례 */
+    .suggestion-legend {
+        margin-top: 0;
+        gap: 14px;
+        font-size: 17px;
+    }
+
+    .suggestion-legend__item {
+        gap: 7px;
+    }
+
+    .suggestion-legend__color {
+        width: 13px;
+        height: 13px;
+    }
+
+    /* 일괄 적용 버튼 */
+    .suggestions__head #confirmSentenceBtn {
+        min-width: 108px;
+        min-height: 48px;
+        padding: 0 22px;
+        font-size: 18px;
+        justify-self: end;
+    }
+
+    /* 교정 제안 목록 */
+    .suggestions__list {
+        margin-top: 6px;
+        gap: 8px;
+    }
+
+    /* 교정 제안이 없을 때 */
+    .suggestions__empty {
+        margin-top: 12px;
+        padding: 16px 10px;
+        font-size: 16px;
+    }
+
+    /* 전체 버튼 글자 크기 확대 */
+    .writing .btn {
+        font-size: 17px;
+    }
+
+    /* 작은 버튼도 터치하기 편하도록 조정 */
+    .writing .btn--sm {
+        min-height: 52px;
+        padding: 0 22px;
+    }
+}
+
+/* =========================================
+   태블릿: 교정 내용 → 설명 → 무시 버튼
+========================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .suggestions__item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 20px 16px;
+    }
+
+    .suggestions__content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .suggestions__change {
+        line-height: 1.5;
+        overflow-wrap: normal;
+        word-break: keep-all;
+    }
+
+    .suggestions__reason {
+        margin-top: 8px;
+        line-height: 1.5;
+    }
+
+    .suggestions__ignore {
+        position: static;
+        align-self: flex-end;
+        min-width: 76px;
+        min-height: 44px;
+        padding: 0 16px;
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================
+   모바일: 자연스러운 줄바꿈 + 작은 버튼
+========================================= */
+
+@media (max-width: 767px) {
+
+    .suggestions__item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 16px 10px;
+    }
+
+    .suggestions__content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .suggestions__change {
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    .suggestions__reason {
+        margin-top: 6px;
+        line-height: 1.5;
+    }
+
+    .suggestions__ignore {
+        position: static;
+        align-self: flex-end;
+        min-width: 64px;
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 15px;
+    }
+}
+
+
+
+
+/* =========================================
+   태블릿: 교정 내용 → 설명 → 무시 버튼
+========================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+    .suggestions__item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 20px 16px;
+    }
+
+    .suggestions__content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .suggestions__change {
+        line-height: 1.5;
+        overflow-wrap: normal;
+        word-break: keep-all;
+    }
+
+    .suggestions__reason {
+        margin-top: 8px;
+        line-height: 1.5;
+    }
+
+    .suggestions__ignore {
+        position: static;
+        align-self: flex-end;
+        min-width: 76px;
+        min-height: 44px;
+        padding: 0 16px;
+        font-size: 16px;
+    }
+}
+
+
+/* =========================================
+   모바일: 자연스러운 줄바꿈 + 작은 버튼
+========================================= */
+
+@media (max-width: 767px) {
+
+    .suggestions__item {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 16px 10px;
+    }
+
+    .suggestions__content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .suggestions__change {
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    .suggestions__reason {
+        margin-top: 6px;
+        line-height: 1.5;
+    }
+
+    .suggestions__ignore {
+        position: static;
+        align-self: flex-end;
+        min-width: 64px;
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 15px;
+    }
 }
 
 #voiceInputBtn.is-recording {
