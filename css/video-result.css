@@ -1,4 +1,4 @@
-/* 동영상 변환 결과 */
+/* 동영상 변환 결과 (기본: 1024px 이상 데스크톱) */
 .player {
   margin-top: 36px;
 }
@@ -28,6 +28,7 @@
   background-color: #ffffff;
   font-size: var(--fs-caption);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .player__toggle {
@@ -48,6 +49,7 @@
   background: none;
   font-size: var(--fs-caption);
   color: #2b3240;
+  white-space: nowrap;
 }
 
 .player__toggle button[aria-pressed="true"] {
@@ -84,6 +86,7 @@
 .player__play {
   display: grid;
   place-items: center;
+  flex-shrink: 0;
   width: 52px;
   height: 52px;
   border: 0;
@@ -99,19 +102,133 @@
 }
 
 .player__time {
+  flex-shrink: 0;
   font-size: var(--fs-caption);
   font-variant-numeric: tabular-nums;
   color: #2b3240;
+  white-space: nowrap;
 }
 
 .player__progress {
   flex: 1;
+  min-width: 0;
   width: auto;
 }
 
 .player__fullscreen {
+  flex-shrink: 0;
   border: 0;
   background: none;
   font-size: var(--fs-caption);
   color: var(--color-body);
+  white-space: nowrap;
+}
+
+/* 태블릿 (768px 구간) */
+@media (max-width: 1023px) {
+  .player {
+    margin-top: 28px;
+  }
+
+  .player__screen {
+    height: 380px;
+    border-radius: 16px;
+  }
+
+  .player__badge {
+    top: 20px;
+    left: 20px;
+    padding: 7px 18px;
+  }
+
+  .player__toggle {
+    top: 18px;
+    right: 20px;
+  }
+
+  .player__toggle button {
+    min-width: 88px;
+    padding: 6px 16px;
+  }
+
+  .player__big-play {
+    width: 92px;
+    height: 92px;
+  }
+
+  .player__big-play svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .player__controls {
+    gap: 16px;
+    padding: 14px 20px;
+  }
+}
+
+/* 모바일 (375px 구간) */
+@media (max-width: 767px) {
+  .player {
+    margin-top: 24px;
+  }
+
+  .player__screen {
+    height: 240px;
+    border-radius: 14px;
+  }
+
+  /* 배지와 토글이 겹치지 않도록 여백 및 버튼 최소 너비 축소 */
+  .player__badge {
+    top: 14px;
+    left: 14px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .player__toggle {
+    top: 12px;
+    right: 14px;
+    padding: 4px;
+  }
+
+  .player__toggle button {
+    min-width: auto;
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .player__big-play {
+    width: 68px;
+    height: 68px;
+  }
+
+  .player__big-play svg {
+    width: 32px;
+    height: 32px;
+    margin-left: 4px;
+  }
+
+  /* 컨트롤 바 한 줄 유지 */
+  .player__controls {
+    gap: 10px;
+    margin-top: 12px;
+    padding: 12px 14px;
+  }
+
+  .player__play {
+    width: 40px;
+    height: 40px;
+  }
+
+  .player__play svg {
+    width: 18px;
+    height: 18px;
+    margin-left: 2px;
+  }
+
+  .player__time,
+  .player__fullscreen {
+    font-size: 12px;
+  }
 }
