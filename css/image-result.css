@@ -1,4 +1,4 @@
-/* 이미지 변환 결과 */
+/* 이미지 변환 결과 (기본: 1024px 이상 데스크톱) */
 .compare {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -40,4 +40,48 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* 태블릿 (768px 구간) */
+@media (max-width: 1023px) {
+  .compare {
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .compare__frame {
+    padding: 16px;
+  }
+
+  .preview {
+    height: 320px;
+  }
+}
+
+/* 모바일 (375px 구간) */
+@media (max-width: 767px) {
+  .compare {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .compare__label {
+    margin-bottom: 10px;
+  }
+
+  .compare__frame {
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .preview {
+    height: 260px;
+    border-radius: 12px;
+  }
+
+  .preview__icon {
+    width: 48px;
+    height: 48px;
+  }
 }
